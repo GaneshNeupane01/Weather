@@ -1,31 +1,50 @@
-
 import React, { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import "./components/LR.css";
+
 const Login = ({ setUsername }) => {
     const [inputUsername, setInputUsername] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = () => {
+        if (inputUsername.trim() === "") {
+            setError(
+                "Oops! You cannot leave this empty 😜. You can skip and still use the app."
+            );
+            return;
+        }
+
+        setError("");
         setUsername(inputUsername);
-        localStorage.setItem("username", inputUsername); // Optional: Store in cache
+        localStorage.setItem("username", inputUsername); // optional
         navigate("/weather");
     };
 
     return (
         <div className="LR">
-            <h2>Login</h2>
+            <h2>What should we call you?</h2>
+
             <input
                 type="text"
-                placeholder="Enter Username"
+                placeholder="Your Name"
                 value={inputUsername}
                 onChange={(e) => setInputUsername(e.target.value)}
             />
-            <input type="password" placeholder="Enter Password" />
-            <button onClick={handleLogin}>Login</button>
+
+            {error && <p className="error">{error}</p>}
+
+            <button onClick={handleLogin}>Let's Go</button>
+
             <p>
-            Don't have an account? <Link to="/register" className="lk">Register</Link> or <Link to="/weather" className="lk" style={{ marginRight: "10px" }}>Use Without Login</Link> 
+                I just want to use the app.
+                <Link
+                    to="/weather"
+                    className="lk"
+                    style={{ marginLeft: "10px" }}
+                >
+                    Skip
+                </Link>
             </p>
         </div>
     );
