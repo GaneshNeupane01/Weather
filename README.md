@@ -231,9 +231,6 @@ rm -rf node_modules package-lock.json
 npm install
 ```
 
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
