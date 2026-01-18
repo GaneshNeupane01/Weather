@@ -236,6 +236,7 @@ npm install
 
 **Ganesh Neupane**
 - GitHub: [@GaneshNeupane01](https://github.com/GaneshNeupane01)
+- Detail: [@portfolio](https://ganesh-neupane.com.np)
 
 ## 🤝 Contributing
 
