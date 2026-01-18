@@ -51,7 +51,7 @@ npm install
 
 ### 3. Configure API Key
 
-The app uses the OpenWeatherMap API. **Important Security Note**: The repository currently contains a hardcoded API key in `src/components/Weather.jsx` (line 11). This is a security risk and should be addressed immediately.
+The app uses the OpenWeatherMap API. **Important Security Note**: The repository currently contains a hardcoded API key in the source code. This is a security risk and should be addressed immediately.
 
 **To set up your own API key:**
 
@@ -140,7 +140,7 @@ This project is configured for Firebase Hosting. **Note**: The current `firebase
    
    **Option B**: Copy the build output to the `build` folder:
    ```bash
-   cp -r dist/* build/
+   mkdir -p build && cp -r dist/* build/
    ```
 
 5. Deploy to Firebase:
