@@ -51,22 +51,24 @@ npm install
 
 ### 3. Configure API Key
 
-The app uses the OpenWeatherMap API. You'll need to configure your API key:
+The app uses the OpenWeatherMap API. **Important Security Note**: The repository currently contains a hardcoded API key in `src/components/Weather.jsx` (line 11). This is a security risk and should be addressed immediately.
+
+**To set up your own API key:**
 
 1. Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
-2. The API key is currently hardcoded in `src/components/Weather.jsx` (line 11):
+2. Replace the hardcoded API key in `src/components/Weather.jsx`:
    ```javascript
-   const API_KEY = "your_api_key_here";
+   const API_KEY = "your_api_key_here";  // Replace with your actual API key
    ```
-3. Replace `"your_api_key_here"` with your actual API key
 
-**For production use**, it's recommended to:
+**Best Practice for Production:**
 - Store the API key in environment variables using a `.env` file:
   ```
   VITE_WEATHER_API_KEY=your_api_key_here
   ```
 - Update `src/components/Weather.jsx` to use: `import.meta.env.VITE_WEATHER_API_KEY`
-- Never commit the `.env` file to version control
+- Add `.env` to `.gitignore` to prevent committing secrets
+- Never commit API keys to version control
 
 ### 4. Run the Development Server
 
@@ -104,7 +106,9 @@ npm run preview
 
 ### Firebase Hosting
 
-This project is configured for Firebase Hosting. Follow these steps:
+This project is configured for Firebase Hosting. **Note**: The current `firebase.json` is set to deploy from the `build` folder, but Vite builds to `dist` by default.
+
+**Deployment Steps:**
 
 1. Install Firebase CLI:
    ```bash
@@ -120,10 +124,11 @@ This project is configured for Firebase Hosting. Follow these steps:
    ```bash
    npm run build
    ```
+   This creates optimized files in the `dist` folder.
 
-4. **Important**: The Firebase configuration expects the build output in the `build` folder, but Vite outputs to `dist` by default. Choose one option:
+4. **Align build output with Firebase configuration** - Choose one approach:
    
-   **Option A (Recommended)**: Update `firebase.json` to use the `dist` folder:
+   **Option A (Recommended)**: Update `firebase.json` to point to `dist`:
    ```json
    {
      "hosting": {
@@ -133,9 +138,9 @@ This project is configured for Firebase Hosting. Follow these steps:
    }
    ```
    
-   **Option B**: Copy the dist folder to build before deploying:
+   **Option B**: Copy the build output to the `build` folder:
    ```bash
-   cp -r dist build
+   cp -r dist/* build/
    ```
 
 5. Deploy to Firebase:
