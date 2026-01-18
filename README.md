@@ -51,19 +51,22 @@ npm install
 
 ### 3. Configure API Key
 
-The app uses the OpenWeatherMap API. The API key is currently hardcoded in `src/components/Weather.jsx` (line 11):
+The app uses the OpenWeatherMap API. You'll need to configure your API key:
 
-```javascript
-const API_KEY = "f2a531dc6e7857bfac5754f6879f0c30";
-```
+1. Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
+2. The API key is currently hardcoded in `src/components/Weather.jsx` (line 11):
+   ```javascript
+   const API_KEY = "your_api_key_here";
+   ```
+3. Replace `"your_api_key_here"` with your actual API key
 
-**Note**: For production use, it's recommended to:
-- Get your own API key from [OpenWeatherMap](https://openweathermap.org/api)
-- Store it in environment variables using a `.env` file:
+**For production use**, it's recommended to:
+- Store the API key in environment variables using a `.env` file:
   ```
   VITE_WEATHER_API_KEY=your_api_key_here
   ```
-- Update the code to use: `import.meta.env.VITE_WEATHER_API_KEY`
+- Update `src/components/Weather.jsx` to use: `import.meta.env.VITE_WEATHER_API_KEY`
+- Never commit the `.env` file to version control
 
 ### 4. Run the Development Server
 
@@ -101,7 +104,7 @@ npm run preview
 
 ### Firebase Hosting
 
-This project is configured for Firebase Hosting:
+This project is configured for Firebase Hosting. Follow these steps:
 
 1. Install Firebase CLI:
    ```bash
@@ -118,14 +121,27 @@ This project is configured for Firebase Hosting:
    npm run build
    ```
 
-4. Deploy to Firebase:
+4. **Important**: The Firebase configuration expects the build output in the `build` folder, but Vite outputs to `dist` by default. Choose one option:
+   
+   **Option A (Recommended)**: Update `firebase.json` to use the `dist` folder:
+   ```json
+   {
+     "hosting": {
+       "public": "dist",
+       ...
+     }
+   }
+   ```
+   
+   **Option B**: Copy the dist folder to build before deploying:
+   ```bash
+   cp -r dist build
+   ```
+
+5. Deploy to Firebase:
    ```bash
    firebase deploy
    ```
-
-**Note**: The Firebase configuration expects the build output in the `build` folder, but Vite outputs to `dist` by default. You may need to:
-- Either copy `dist` to `build`: `cp -r dist build`
-- Or update `firebase.json` to use `"public": "dist"`
 
 ## 📁 Project Structure
 
