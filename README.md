@@ -2,7 +2,7 @@
 ## 🟢 Project is live on https://weather-59bf2.web.app/
 
 A modern, responsive weather application built with React that provides real-time weather information, 5-day forecasts, and 24-hour temperature trends with beautiful visualizations.
-
+![Demo](UI_Glance_Weather_App.jpg)
 ## ✨ Features
 
 - **Real-time Weather Data**: Get current weather information based on your location
